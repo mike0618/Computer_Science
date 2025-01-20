@@ -1,0 +1,8 @@
+name: HealSpigot
+version: 1.0
+main: com.heal_plugin.HealSpigot
+commands:
+  heal:
+    description: Restores a player's health
+    usage: /heal
+
