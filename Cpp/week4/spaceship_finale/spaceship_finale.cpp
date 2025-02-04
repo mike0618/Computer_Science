@@ -8,13 +8,13 @@ private: // members used only in the class
 
 public: // program scope members
   // Default constructor
-  Spaceship() {}; // created automatically if not defined
+  Spaceship() {} // created automatically if not defined
   // Parameterized constructor
   Spaceship(double len, double wid, double hgt) {
     m_len = len;
     m_wid = wid;
     m_hgt = hgt;
-  };
+  }
   // getter
   double get_len() { return m_len; }
   // setter
