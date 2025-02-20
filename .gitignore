@@ -214,4 +214,7 @@ dmypy.json
 cython_debug/
 # Git credentials
 .git-credentials
+# DB
+.db
 TOKEN
+
