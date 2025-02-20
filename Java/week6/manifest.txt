@@ -1,0 +1,2 @@
+Main-Class: SQLiteMusic
+Class-Path: lib/sqlite-jdbc.jar
