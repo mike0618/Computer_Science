@@ -1,7 +1,6 @@
 from datetime import datetime
-from flask import Flask, redirect, render_template, url_for
-from flask_bootstrap import Bootstrap
-from jinja2 import runtime  # pip install flask_bootstrap
+from flask import Flask, render_template, request
+from flask_bootstrap import Bootstrap  # pip install flask_bootstrap
 from forms import CalcForm
 from secrets import token_hex
 
@@ -19,7 +18,7 @@ def inject_year():
 @app.route("/", methods=["GET", "POST"])  # the form uses POST on submit
 def home():
     form = CalcForm()  # create a form object
-    if not form.validate_on_submit():
+    if not form.validate_on_submit() or request.method == "GET":
         return render_template("index.html", form=form)
     # if form is validated, get data from it
     num1 = float(str(form.num1.data))
@@ -33,7 +32,8 @@ def home():
         case "*":
             return f"{num1 * num2}"
         case "/":
-            return f"{num1 / num2}"
+            if num2:
+                return f"{num1 / num2}"
     return ""
 
 
