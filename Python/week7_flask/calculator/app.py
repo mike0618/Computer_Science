@@ -34,6 +34,7 @@ def home():
         case "/":
             if num2:
                 return f"{num1 / num2}"
+            return "Zero division"
     return ""
 
 
