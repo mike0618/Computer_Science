@@ -7,6 +7,7 @@ from secrets import token_hex
 app = Flask("Calculator")  # create the app
 app.secret_key = token_hex()  # a random session secret key to mitigate CSRF
 Bootstrap(app)  # init bootstrap
+app.config["WTF_CSRF_TIME_LIMIT"] = None
 
 
 @app.context_processor
