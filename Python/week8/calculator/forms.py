@@ -12,12 +12,3 @@ class CalcForm(FlaskForm):
         choices=[("+", "Sum"), ("-", "Subtract"), ("*", "Multiply"), ("/", "Divide")],
     )
     calc = SubmitField("Calculate")
-
-
-class ConvForm(FlaskForm):
-    value = DecimalField("Value", validators=[InputRequired()])
-    method = SelectField(
-        "Conversion",
-        choices=[("kg", "Pounds to Kilograms"), ("p", "Kilograms to Pounds")],
-    )
-    conv = SubmitField("Convert")

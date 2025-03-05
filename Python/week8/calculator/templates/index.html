@@ -4,7 +4,7 @@
 <!-- Page content-->
 <div class="container">
   <div class="text-left mt-5">
-    <h1>A Simple Calculator</h1>
+    <h1>A simple calculator</h1>
     <p class="lead">Flask + Free Bootstrap Bare Template(HTML+CSS+JS) + Jinja2 + HTMX</p>
     <!-- load HTMX -->
     <script src="https://unpkg.com/htmx.org@2.0.4"></script>
@@ -15,12 +15,5 @@
     <hr>
     <!-- HTMX will replace the content of span with the result -->
     <p>Result: <span id="result"></span></p>
-    <hr>
-    <h1>A Mass Converter</h1>
-    <form id="my-form" method="POST" hx-post="{{ url_for('conv') }}" hx-target="#conv_span" hx-swap="innerHTML">
-      {{ wtf.quick_form(conv_form, button_map={"conv": "outline-dark"}) }}
-    </form>
-    <hr>
-    <p>Result: <span id="conv_span"></span></p>
-    <!-- include footer below the content using Jinja2 -->
-    {% include "footer.html" %}
+<!-- include footer below the content using Jinja2 -->
+{% include "footer.html" %}
