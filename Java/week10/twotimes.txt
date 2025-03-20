@@ -1,0 +1,7 @@
+Input: 12 * 2 = 24 written to file.
+Input: 23 * 2 = 46 written to file.
+Input: 34 * 2 = 68 written to file.
+Input: 45 * 2 = 90 written to file.
+Input: 66 * 2 = 132 written to file.
+Input: 77 * 2 = 154 written to file.
+Input: 11 * 2 = 22 written to file.

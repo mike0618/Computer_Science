@@ -1,5 +1,6 @@
 from collatz_class import Collatz
 from time import time
+from concurrent.futures import ProcessPoolExecutor, as_completed
 
 
 # decorator to measure the execution time
@@ -8,7 +9,7 @@ def timer(f):
         start = time()
         res = f(*args, **kwargs)
         exec_time = time() - start
-        print(f"\n The function {f.__name__} executed in: {exec_time:.3f} seconds")
+        print(f"\nThe function {f.__name__} executed in: {exec_time:.3f} seconds")
         return res
 
     return wrapper
@@ -29,14 +30,31 @@ def challenge(f, num):
     # TODO: get the biggest length and print the number and the length
     max_l = 0
     max_n = 0
-    # assume that odd numbers produce the longer chaines, but that's not certain.
-    for n in range(1, num, 2):
-        lng = f(n)
-        if lng > max_l:
-            max_l = lng
-            max_n = n
+    # use multiprocessing to finish the challenge faster
+    w = 16  # processes number
+    with ProcessPoolExecutor(max_workers=w) as ppe:
+        # assume that odd numbers produce the longer chaines, but that's not certain.
+        results = [
+            ppe.submit(challenge_calc, n, num + 1, f, w * 2) for n in range(1, w * 2, 2)
+        ]
+        # check results of all processes and get the maximum value
+        for p in as_completed(results):
+            res = p.result()
+            if res[1] > max_l:
+                max_n, max_l = res
     # TODO: print the result
     print(f"The number {max_n} produces the longest chain of {max_l} steps.")
+
+
+def challenge_calc(n, num, f, w):
+    max_l = 0
+    max_n = 0
+    for i in range(n, num, w):
+        lng = f(i)
+        if lng > max_l:
+            max_l = lng
+            max_n = i
+    return max_n, max_l
 
 
 def main():
